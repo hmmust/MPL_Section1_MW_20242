@@ -1,17 +1,18 @@
+//exports.checkAge= async (age)=>{ // promise
 const checkAge= async (age)=>{ // promise
   if(age >=18)
     return age;
   else
-    return Promise.reject("Invalid Age");
+  return Promise.reject("Invalid Age");
 }
-checkAge(20).then((value)=>{
-    return 2025-value;
-}).then((birthyear)=>{
 
-    
-}).catch((value)=>{
-    console.log(value);
-});
+exports.checkAge= checkAge;
+exports.averageAge= 25;
+//module.exports = checkAge;
+//module.exports = {checkAge};
+
+
+
 
 
 
