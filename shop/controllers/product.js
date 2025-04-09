@@ -1,17 +1,22 @@
 const getProduct= (req,res)=>{
-    res.write("<html><body><form action='' method='post'>");
-    res.write("Name: <input type='text' name='name'><br>");
-    res.write("Type: <input type='text' name='type'><br>");
-    res.write("Price: <input type='number' name='price'><br>");
-    res.end("<input type='submit' value='Save'></form></body></html>");
-   };
+        res.render("addproduct",{title:'Add Product'});
+ };
 const getProducts= (req,res)=>{
     //res.render("index.ejs");
     res.end("Products");
     };
 const postProduct= (req,res)=>{
-        res.end("Data received!");
+        res.write("Data received!");
+        res.write(req.body.name);
+        res.write(req.body.type);
+        res.end(req.body.price);
        };
+const getProductsId= (req,res)=>{
+        res.write(req.params.pid+"<br>");
+        res.write(req.query.type+"<br>");
+        res.end("Products");
+        };
 exports.getProduct=getProduct;
 exports.getProducts=getProducts;
 exports.postProduct=postProduct;
+exports.getProductsId=getProductsId;
