@@ -6,11 +6,14 @@ const getProducts= (req,res)=>{
     res.render("product/viewproducts.ejs",{title:'View Products', prods: products});
     };
 const postProduct= (req,res)=>{
-        res.render("product/viewproduct",{title:'View Product',
+        products.push(req.body.name);
+        res.redirect("/shop/products");
+        /*res.render("product/viewproduct",{title:'View Product',
                 name:req.body.name,
                 price:req.body.price,
                 type:req.body.type
         });
+        */
        };
 const getProductsId= (req,res)=>{
         res.write(req.params.pid+"<br>");
