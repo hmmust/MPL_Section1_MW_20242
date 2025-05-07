@@ -1,12 +1,20 @@
-const products =['Water','Banana','Juice','PC']
+const product = require('../models/product');
+
 const getProduct= (req,res)=>{
         res.render("product/addproduct",{title:'Add Product'});
  };
 const getProducts= (req,res)=>{
-    res.render("product/viewproducts.ejs",{title:'View Products', prods: products});
+        product.find().then((products)=>{
+                res.render("product/viewproducts.ejs",{title:'View Products', 
+                        prods: products});
+        });
+
     };
 const postProduct= (req,res)=>{
-        products.push(req.body.name);
+        p =  product({name:req.body.name,price:req.body.price,
+                type:req.body.type});
+        
+        p.save();
         res.redirect("/shop/products");
         /*res.render("product/viewproduct",{title:'View Product',
                 name:req.body.name,

@@ -1,6 +1,11 @@
 const express=require('express');
 const app=express();
 const path = require('path');
+const  mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost:27017/mpl').then((a)=>{
+    console.log("connected to mpl database.. ");
+});
+
 const productRouter=require("./routes/product");
 const errorRouter=require("./routes/errors");
 const bodyParser = require('body-parser');
