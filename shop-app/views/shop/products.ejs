@@ -1,0 +1,21 @@
+<%- include('../partials/head', {title:PageTitle})%>
+<%- include('../partials/nav')%>
+<div class="container">
+  <div class="row">
+<% for( p of prods){%>
+  <div class="col-md-3"> 
+    <div class="card" style="width:400px">
+      <img class="card-img-top" src="img_avatar1.png" alt="Card image">
+      <div class="card-body">
+        <h4 class="card-title"><%= p.name %></h4>
+        <h5 ><%= p.type %></h5>
+        <h5 ><%= p.price %></h5>
+        <p class="card-text"><%= p.description %></p>
+        <a href="/admin/edit-product/<%= p.id %>" class="btn btn-primary">See Profile</a>
+      </div>
+    </div>
+<%}%>
+</div>
+</div>
+
+<%- include('../partials/footer')%>

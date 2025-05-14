@@ -20,6 +20,35 @@ exports.getProducts = (req,res,next)=> {
     });
 
 };
-exports.getEditProduct= (req,res,next)=> {};
-exports.postEditProduct= (req,res,next)=>{};
-exports.postDeleteProduct= (req,res,next)=>{};
+exports.getEditProduct= (req,res,next)=> {
+    id = req.params.ProductId; 
+    product.findById(id).then((p)=>{
+        res.render('admin/edit-product',{PageTitle:'Shop Home',
+            product:p
+        });
+
+    });
+};
+exports.postEditProduct= (req,res,next)=>{
+    id = req.body.id;
+    name = req.body.name;
+    price= req.body.price;
+    type= req.body.type;
+    description= req.body.description;
+    product.findById(id).then((p)=>{
+        p.name= name;
+        p.type= type;
+        p.description= description;
+        p.price= price;
+        p.save().then(()=>{
+            res.redirect("/admin/products");
+        });
+        
+    });
+};
+exports.postDeleteProduct= (req,res,next)=>{
+    id = req.body.id;
+    product.findByIdAndDelete(id).then((p)=>{
+        res.redirect("/admin/products");
+    });
+};

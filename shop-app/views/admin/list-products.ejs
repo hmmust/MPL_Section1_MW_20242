@@ -15,8 +15,8 @@
         <td><%= p.name %></td>
         <td><%= p.type %></td>
         <td><%= p.price %></td>
-        <td><a class="btn btn-success">Edit</a></td>
-        <td><form action="/delete-product" method="post">
+        <td><a class="btn btn-success" href="/admin/edit-product/<%= p.id %>">Edit</a></td>
+        <td><form action="/admin/delete-product" method="post">
             <input name="id" type="hidden" value="<%= p.id %>">
             <button type="submit" class="btn btn-danger" >Delete</button>
         </form>

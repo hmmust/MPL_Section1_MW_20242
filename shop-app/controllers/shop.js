@@ -1,8 +1,15 @@
+const product = require('../models/product');
 
 exports.getIndex = (req,res,next)=> {
 res.render('shop/index',{PageTitle:'Shop Home'});
 };
-exports.getProducts = (req,res,next)=> {};
+exports.getProducts = (req,res,next)=> {
+    product.find().then((products)=>{
+        res.render('shop/products',{PageTitle:'Shop Home',
+            prods:products
+        });
+    });
+};
 exports.getProduct = (req,res,next)=> {};
 exports.postCart= (req,res,next)=> {};
 exports.getCart= (req,res,next)=> {};
