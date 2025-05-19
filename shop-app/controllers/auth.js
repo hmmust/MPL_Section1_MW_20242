@@ -11,9 +11,10 @@ exports.postLogin= (req,res,next)=> {
     user.find({username:uname,password:upass}).then((u)=>{
             if(u.length !=0 )
                 {
-                    res.redirect("/admin/products");
                     req.session.isAuth= true;
                     req.session.isAdmin = u.isAdmin;
+                    res.redirect("/admin/products");
+
                 }
             else
                 res.redirect("/login");
