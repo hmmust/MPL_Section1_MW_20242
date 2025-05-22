@@ -1,6 +1,6 @@
 const product = require('../models/product');
 exports.getAddProduct= (req,res,next)=> {
-    res.render('admin/add-product',{PageTitle:'Shop Home'});
+    res.render('admin/add-product',{PageTitle:'Shop Home',isAuth:req.session.isAuth});
 };
 exports.postAddProduct= (req,res,next)=>{
     let n=req.body.name;
@@ -10,12 +10,13 @@ exports.postAddProduct= (req,res,next)=>{
     const newProduct = product({name:n, type:t,
          price:p, description:d});
          newProduct.save();
-    res.render('admin/add-product',{PageTitle:'Shop Home'});
+    res.render('admin/add-product',{PageTitle:'Shop Home',isAuth:req.session.isAuth});
 };
 exports.getProducts = (req,res,next)=> {
     product.find().then((products)=>{
         res.render('admin/list-products',{PageTitle:'Shop Home',
-            prods:products
+            prods:products,
+            isAuth:req.session.isAuth
         });
     });
 

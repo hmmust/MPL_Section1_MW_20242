@@ -9,6 +9,7 @@
 <li sclass="nav-item"><a class="nav-link" href="/products">Products</a></li>
 <li class="nav-item"><a class="nav-link" href="/cart">Cart</a></li>
 <li class="nav-item"><a class="nav-link" href="/orders">Orders</a></li>
+<% if(isAuth){%>
  <!-- Dropdown -->
     <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
@@ -19,6 +20,12 @@
         <a class="dropdown-item" href="/admin/products">Admin Products</a>
       </div>
     </li>
+
+    <% } if(isAuth){%>
+    <li class="nav-item"><a class="nav-link navbar-nav ml-auto" href="/logout">Logout</a></li>
+    <%} else {%>
+    <li class="nav-item"><a class="nav-link navbar-nav ml-auto" href="/login">Login</a></li>
+      <%}%>
 </ul>
 </div>
 </nav>

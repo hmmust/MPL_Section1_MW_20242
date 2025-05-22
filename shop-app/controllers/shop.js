@@ -1,12 +1,13 @@
 const product = require('../models/product');
 
 exports.getIndex = (req,res,next)=> {
-res.render('shop/index',{PageTitle:'Shop Home'});
+res.render('shop/index',{PageTitle:'Shop Home',isAuth:req.session.isAuth});
 };
 exports.getProducts = (req,res,next)=> {
     product.find().then((products)=>{
         res.render('shop/products',{PageTitle:'Shop Home',
-            prods:products
+            prods:products,
+            isAuth:req.session.isAuth
         });
     });
 };
