@@ -1,6 +1,18 @@
 const product = require('../models/product');
 exports.getAddProduct= (req,res,next)=> {
-    res.render('admin/add-product',{PageTitle:'Shop Home',isAuth:req.session.isAuth});
+    errors = req.flash('add-errors')[0];
+    if(errors==undefined)
+        res.render('admin/add-product',{PageTitle:'Shop Home',
+            isAuth:req.session.isAuth,
+            errors:[],
+            data:{}
+        });
+    else
+        res.render('admin/add-product',{PageTitle:'Shop Home',
+            isAuth:req.session.isAuth,
+            errors:errors.error_messages,
+            data:errors.old_data
+        });
 };
 exports.postAddProduct= (req,res,next)=>{
     let n=req.body.name;
