@@ -31,7 +31,6 @@ exports.getProducts = (req,res,next)=> {
             isAuth:req.session.isAuth
         });
     });
-
 };
 exports.getEditProduct= (req,res,next)=> {
     id = req.params.ProductId; 
@@ -55,8 +54,7 @@ exports.postEditProduct= (req,res,next)=>{
         p.price= price;
         p.save().then(()=>{
             res.redirect("/admin/products");
-        });
-        
+        });  
     });
 };
 exports.postDeleteProduct= (req,res,next)=>{
