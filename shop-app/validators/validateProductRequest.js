@@ -18,7 +18,7 @@ else{
     req.flash('add-errors',{old_data:old_data,
         error_messages:error_messages
     });
-    res.redirect("/admin/add-product")
+    res.redirect("/admin/add-product");
 }
 
 

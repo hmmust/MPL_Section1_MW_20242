@@ -1,17 +1,20 @@
 const product = require('../models/product');
 exports.getAddProduct= (req,res,next)=> {
     errors = req.flash('add-errors')[0];
-    if(errors==undefined)
+    if(errors==undefined){
         res.render('admin/add-product',{PageTitle:'Shop Home',
             isAuth:req.session.isAuth,
-            errors:[],
-            data:{}
+            valid:true,
+            errors:undefined,
+            data:{name:"",type:"",description:"",price:0}
         });
+    }
     else
         res.render('admin/add-product',{PageTitle:'Shop Home',
             isAuth:req.session.isAuth,
             errors:errors.error_messages,
-            data:errors.old_data
+            data:errors.old_data,
+            valid:false
         });
 };
 exports.postAddProduct= (req,res,next)=>{
@@ -22,7 +25,8 @@ exports.postAddProduct= (req,res,next)=>{
     const newProduct = product({name:n, type:t,
          price:p, description:d});
          newProduct.save();
-    res.render('admin/add-product',{PageTitle:'Shop Home',isAuth:req.session.isAuth});
+    res.redirect("/admin/products");
+    //res.render('admin/add-product',{PageTitle:'Shop Home',isAuth:req.session.isAuth});
 };
 exports.getProducts = (req,res,next)=> {
     product.find().then((products)=>{
